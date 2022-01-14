@@ -2,5 +2,5 @@ h5py
 pandas
 numpy
 matplotlib
-ipywidgets=='7.6.5'
+ipywidgets==7.6.5
 
