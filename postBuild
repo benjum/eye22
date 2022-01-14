@@ -1,0 +1,3 @@
+wget -O - https://github.com/benjum/eye-to-share-d/archive/main.tar.gz | tar xz
+mv eye-to-share-d-main/00layers ./data
+rm -r eye-to-share-d-main
