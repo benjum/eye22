@@ -26,6 +26,7 @@ displacements['ypos']=displacements['y_morphed']
 from os import listdir
 from os.path import isfile, join
 x = [f for f in listdir('data') if isfile(join('data',f))]
+x.sort()
 
 patientnums = [i.split('-')[0] for i in x]
 patientthicks = [i.split('-')[1].replace('.hdf5','') for i in x]
@@ -40,6 +41,7 @@ for i in patientthicks:
     if i not in thickunique:
         thickunique.append(i)
 		
+h5files.sort()
 h5f = h5py.File(h5files[0],'r')
 for i in h5f['070/L'].keys():
     yunique = [int(j) for j in h5f['070/L/'+str(i)+''].keys()]
