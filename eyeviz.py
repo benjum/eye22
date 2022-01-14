@@ -21,7 +21,11 @@ displacements = pd.read_csv('VF_Locations.csv')
 displacements['xpos']=displacements['x_morphed']
 displacements['ypos']=displacements['y_morphed']
 
-x = %system ls 'data/'
+#x = %system ls 'data/'
+from os import listdir
+from os.path import isfile, join
+x = [f for f in listdir('data') if isfile(join('data',f))]
+
 patientnums = [i.split('-')[0] for i in x]
 patientthicks = [i.split('-')[1].replace('.hdf5','') for i in x]
 h5files = ['data/'+i for i in x]
@@ -55,8 +59,8 @@ def closest(lst, K):
 patientdf.loc[:,'VISIT_DATE'] = pd.to_datetime(patientdf.loc[:,'VISIT_DATE'],format='%m/%d/%y')
 
 
-h5f = h5py.File(h5files[0],'r')
-def ploteye(patient='001',eyeside='L',t=0,gridpts=640,tness='GCIPL',
+# h5f = h5py.File(h5files[0],'r')
+def ploteye(h5f,patient='001',eyeside='L',t=0,gridpts=640,tness='GCIPL',
             opacity1=1.0,opacity2=1.0):
 
     
@@ -139,52 +143,52 @@ def ploteye(patient='001',eyeside='L',t=0,gridpts=640,tness='GCIPL',
         display(fig)
         clear_output(wait=True)
         
-d1 = widgets.Dropdown(options=numsunique,description='Patient')
-d2 = widgets.Dropdown(options=['L','R'],description='Eyeside')
-d3 = widgets.Dropdown(options=thickunique,description='Layer',value='GCIPL')
-d4 = widgets.Dropdown(options=yunique,description='Grid Pts')
-s1 = widgets.IntSlider(min=0,
-                       max=len(h5f['001/L'].keys())-1)
+# d1 = widgets.Dropdown(options=numsunique,description='Patient')
+# d2 = widgets.Dropdown(options=['L','R'],description='Eyeside')
+# d3 = widgets.Dropdown(options=thickunique,description='Layer',value='GCIPL')
+# d4 = widgets.Dropdown(options=yunique,description='Grid Pts')
+# s1 = widgets.IntSlider(min=0,
+#                        max=len(h5f['001/L'].keys())-1)
 
-def valued1_changed(change):
-    global h5f
-    h5f.close()
-    h5f = h5py.File('data/'+change.new+'-'+d3.value+'.hdf5','r')
-    if len(h5f.keys()) == 0:
-        s1.max = 0
-    elif d2.value not in h5f[change.new].keys():
-        s1.max = 0
-    else:
-        s1.max = max(0,len(h5f[change.new+'/'+d2.value].keys())-1)
-    s1.value = 0
-d1.observe(valued1_changed, 'value')
+# def valued1_changed(change):
+#     global h5f
+#     h5f.close()
+#     h5f = h5py.File('data/'+change.new+'-'+d3.value+'.hdf5','r')
+#     if len(h5f.keys()) == 0:
+#         s1.max = 0
+#     elif d2.value not in h5f[change.new].keys():
+#         s1.max = 0
+#     else:
+#         s1.max = max(0,len(h5f[change.new+'/'+d2.value].keys())-1)
+#     s1.value = 0
+# d1.observe(valued1_changed, 'value')
 
-def valued2_changed(change):
-    if len(h5f.keys()) == 0:
-        s1.max = 0
-    elif change.new not in h5f[d1.value].keys():
-        s1.max = 0
-    else:
-        s1.max = max(0,len(h5f[d1.value+'/'+change.new].keys())-1)
-    s1.value = 0
-d2.observe(valued2_changed, 'value')
+# def valued2_changed(change):
+#     if len(h5f.keys()) == 0:
+#         s1.max = 0
+#     elif change.new not in h5f[d1.value].keys():
+#         s1.max = 0
+#     else:
+#         s1.max = max(0,len(h5f[d1.value+'/'+change.new].keys())-1)
+#     s1.value = 0
+# d2.observe(valued2_changed, 'value')
 
-def valued3_changed(change):
-    global h5f
-    h5f.close()
-    h5f = h5py.File('data/'+d1.value+'-'+change.new+'.hdf5','r')
-    if len(h5f.keys()) == 0:
-        s1.max = 0
-    elif d2.value not in h5f[d1.value].keys():
-        s1.max = 0
-    else:
-        s1.max = max(0,len(h5f[d1.value+'/'+d2.value].keys())-1)
-    s1.value = 0
-d3.observe(valued3_changed, 'value')
+# def valued3_changed(change):
+#     global h5f
+#     h5f.close()
+#     h5f = h5py.File('data/'+d1.value+'-'+change.new+'.hdf5','r')
+#     if len(h5f.keys()) == 0:
+#         s1.max = 0
+#     elif d2.value not in h5f[d1.value].keys():
+#         s1.max = 0
+#     else:
+#         s1.max = max(0,len(h5f[d1.value+'/'+d2.value].keys())-1)
+#     s1.value = 0
+# d3.observe(valued3_changed, 'value')
 
-interact(ploteye, 
-         patient=d1, 
-         eyeside=d2,
-         tness=d3,
-         gridpts=d4,
-         t=s1,opacity1=(0.0,1.0,0.1),opacity2=(0.0,1.0,0.1));
+# interact(ploteye, 
+#          patient=d1, 
+#          eyeside=d2,
+#          tness=d3,
+#          gridpts=d4,
+#          t=s1,opacity1=(0.0,1.0,0.1),opacity2=(0.0,1.0,0.1));
