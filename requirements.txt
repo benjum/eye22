@@ -1,0 +1,9 @@
+jupyter-book
+bokeh
+holoviews
+h5py
+pandas
+numpy
+matplotlib
+ipywidgets
+scipy
