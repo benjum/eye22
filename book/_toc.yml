@@ -4,3 +4,4 @@ parts:
   - caption: Eye Viz Caption
     chapters:
     - file: ev.ipynb 
+    - file: Untitled1.ipynb
