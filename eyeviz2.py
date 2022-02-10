@@ -173,7 +173,7 @@ def ploteye2(h5f,patient='070',eyeside='L',t=0,gridpts=640,tness='GCIPL',
                     edgecolors='w',
                     vmax=15,vmin=-15);
         plt.colorbar(p3,cax=cax2)
-        ax[0].text(36,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
+        ax[0].text(37,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
         ax[0].text(47,0.1*totalheight,'VF difference from baseline',rotation='vertical',fontsize=12)
         ax[0].set_title('Baseline\n' + # = '+h5f[patient+'/'+eyeside+'/'+tstr+'/'+str(yfac)+'/'+str(xfac)+'/dataset'].attrs['date']+'\n'+
                      'Date = '+patient119Rv0['VISIT_DATE'].iloc[0].strftime('%Y-%m-%d'))
@@ -210,7 +210,7 @@ def ploteye2(h5f,patient='070',eyeside='L',t=0,gridpts=640,tness='GCIPL',
                     edgecolors='w',
                     vmax=15,vmin=-15);
         plt.colorbar(p3,cax=cax2)
-        ax[1].text(36,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
+        ax[1].text(37,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
         ax[1].text(47,0.1*totalheight,'VF difference from baseline',rotation='vertical',fontsize=12)
         ax[1].set_title('OCT Date = '+h5f[patient+'/'+eyeside+'/'+tstr+'/'+str(yfac)+'/'+str(xfac)+'/dataset'].attrs['date']+'\n'+
                      'VF Date = '+patient119Rv0['VISIT_DATE'].iloc[m].strftime('%Y-%m-%d')+'\n'+
@@ -252,7 +252,7 @@ def ploteye2(h5f,patient='070',eyeside='L',t=0,gridpts=640,tness='GCIPL',
                     edgecolors='w',
                     vmax=15,vmin=-15);
         plt.colorbar(p3,cax=cax2)
-        ax[2].text(36,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
+        ax[2].text(37,0.05*totalheight,'OCT difference from baseline',rotation='vertical',fontsize=12)
         ax[2].text(47,0.1*totalheight,'VF difference from baseline',rotation='vertical',fontsize=12)
         ax[2].set_title('Lower Vals')
 
@@ -293,7 +293,7 @@ def ploteye2(h5f,patient='070',eyeside='L',t=0,gridpts=640,tness='GCIPL',
                     edgecolors='w',
                     vmax=15,vmin=-15);
         plt.colorbar(p3,cax=cax2)
-        ax[3].text(36,0.45*totalheight,'OCT',rotation='vertical',fontsize=12)
+        ax[3].text(37,0.05*totalheight,'OCT difference from baseline',rotation='vertical',fontsize=12)
         ax[3].text(47,0.1*totalheight,'VF difference from baseline',rotation='vertical',fontsize=12)
         ax[3].set_title('Higher Vals')
 
